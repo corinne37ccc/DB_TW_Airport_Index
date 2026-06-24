@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台灣航空資訊總覽</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#7192A1; --primary-dark:#042842; --primary-mid:#4E7383;
+  --primary-light:#A5C2CC; --primary-bg:#EBF2F5; --primary-border:#C5D6DD;
+  --accent-brown:#C08E66; --accent-rust:#C86647; --accent-light:#E8C9A8;
+  --bg:#EDE5D8; --bg-warm:#F5EFE4; --surface:#FDFAF5; --secondary-bg:#F0E9DC;
+  --text:#042842; --text-2:#5A7A8A; --text-3:#9AB2BC; --border:#D8CEBD;
+  --shadow-sm:0 1px 3px rgba(4,40,66,.07),0 1px 2px rgba(4,40,66,.05);
+  --shadow:0 4px 6px -1px rgba(4,40,66,.08),0 2px 4px -2px rgba(4,40,66,.05);
+  --shadow-lg:0 12px 24px -8px rgba(4,40,66,.16),0 4px 8px -4px rgba(4,40,66,.08);
+  --radius:12px; --radius-sm:8px;
+  --font:'Noto Sans TC',sans-serif; --font-en:'Inter','Noto Sans TC',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14px;line-height:1.6;min-height:100vh;-webkit-font-smoothing:antialiased}
+
+/* ---------- header ---------- */
+.site-header{background:var(--surface);border-bottom:1px solid var(--border);box-shadow:var(--shadow-sm);position:sticky;top:0;z-index:20}
+.header-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;height:116px;padding:0 28px;gap:18px}
+.mark{width:48px;height:48px;flex:none;color:var(--primary-dark)}
+.header-title{display:flex;flex-direction:column;gap:5px}
+.header-title h1{font-size:32px;font-weight:700;letter-spacing:.5px;white-space:nowrap;color:var(--primary-dark)}
+.header-title .en{font-family:var(--font-en);font-size:15px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#33495A;white-space:nowrap}
+
+/* ---------- hero ---------- */
+.hero{max-width:1180px;margin:0 auto;padding:36px 28px 8px}
+.hero .eyebrow{font-family:var(--font-en);font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--primary);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.hero .eyebrow::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--primary-border),transparent);max-width:280px}
+.hero p{font-size:15px;color:#33495A;max-width:660px;line-height:1.75}
+
+/* ---------- grid ---------- */
+.grid{max-width:1180px;margin:0 auto;padding:28px 28px 8px;display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+
+/* ---------- card ---------- */
+.card{position:relative;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden;text-decoration:none;color:inherit;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--theme)}
+.card-body{padding:20px 26px 22px;flex:1;display:flex;flex-direction:column}
+.card-head{display:flex;align-items:center;gap:14px;padding:18px 26px;background:var(--theme);margin:0 0 18px 0}
+.icon-disc{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex:none;background:rgba(255,255,255,.18);color:#fff}
+.icon-disc svg{width:22px;height:22px}
+.card-titlewrap{display:flex;flex-direction:column;gap:4px}
+.card-label{font-family:var(--font-en);font-size:10.5px;font-weight:600;letter-spacing:2.2px;text-transform:uppercase;color:rgba(255,255,255,.8)}
+.card h3{font-size:18px;font-weight:700;letter-spacing:.5px;color:#fff}
+.card ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:20px}
+.card li{position:relative;padding-left:18px;font-size:13.5px;color:#33495A;line-height:1.5}
+.card li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--theme);opacity:.55}
+.card-enter{margin-top:auto;display:flex;align-items:center;gap:7px;font-family:var(--font-en);font-size:13px;font-weight:600;letter-spacing:.5px;color:#4A4A4A}
+.card-enter .zh{font-family:var(--font);letter-spacing:1px}
+.card-enter .arrow{transition:transform .18s ease}
+.card:hover .card-enter .arrow{transform:translateX(4px)}
+
+/* ---------- footer ---------- */
+.site-footer{max-width:1180px;margin:0 auto;padding:36px 28px 48px}
+.footer-rule{height:1px;background:var(--border);margin-bottom:22px}
+.footer-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px}
+.footer-grid .src{font-size:12.5px;color:#33495A;line-height:1.8;max-width:560px}
+.footer-meta{font-size:12.5px;color:#33495A;line-height:1.8;text-align:right}
+.footer-tag{margin-top:24px;font-family:var(--font-en);font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:#33495A;text-align:center}
+
+@media (max-width:900px){
+  .grid{grid-template-columns:1fr;gap:16px;padding:22px 20px 8px}
+  .hero{padding:26px 20px 4px}
+  .header-inner{padding-left:20px;padding-right:20px;height:auto;min-height:88px;padding-top:14px;padding-bottom:14px}
+  .site-footer{padding-left:20px;padding-right:20px}
+  .footer-grid{flex-direction:column}
+  .footer-meta{text-align:left}
+}
+@media (max-width:600px){
+  .header-title h1{font-size:24px}
+  .header-title .en{font-size:12px;letter-spacing:2px}
+  .mark{width:36px;height:36px}
+  .hero p{font-size:13.5px}
+  .card-body{padding:18px 20px 18px}
+  .card-head{padding:16px 20px}
+  .card h3{font-size:16.5px}
+}
+@media (max-width:380px){
+  .header-title .en{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L12 19v-5.5z"/>
+    </svg>
+    <div class="header-title">
+      <h1>台灣航空資訊總覽</h1>
+      <span class="en">Taiwan Civil Aviation Dashboard</span>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">Dashboard Directory · 儀表板目錄</div>
+  <p>整合機場營運、國際航線、航空貨運與國籍航空公司四大主題的民航統計儀表板，資料涵蓋歷年趨勢與市場結構分析，點選卡片即可進入各主題儀表板。</p>
+</section>
+
+<main class="grid">
+
+  <!-- 1. 機場數據概覽 -->
+  <a class="card" style="--theme:#042842;--theme-bg:#EBF2F5" href="https://corinne37ccc.github.io/DB_TW_Airport_data-overview/TW_airport_dashboard.html" target="_blank" rel="noopener">
+    <div class="card-head">
+      <div class="icon-disc">
+        <img src="data:image/png;base64,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" alt="" style="width:24px;height:auto;display:block" aria-hidden="true">
+      </div>
+      <div class="card-titlewrap">
+        <div class="card-label">Airport · Overview</div>
+        <h3>機場數據概覽</h3>
+      </div>
+    </div>
+    <div class="card-body">
+      <ul>
+        <li>全國機場歷年客運、貨運與起降架次趨勢</li>
+        <li>各機場運量排名與佔比比較</li>
+        <li>國際 / 兩岸 / 國內航線別客運結構</li>
+        <li>歷年總客運量 YoY 成長率</li>
+      </ul>
+      <div class="card-enter"><span class="zh">進入儀表板</span><span class="arrow">→</span></div>
+    </div>
+  </a>
+
+  <!-- 2. 國際航線市場分析 -->
+  <a class="card" style="--theme:#2E5F78;--theme-bg:#EBF2F5" href="https://corinne37ccc.github.io/DB_TW_Airport_routes_dashboard/TW_airport-routes_dashboard.html" target="_blank" rel="noopener">
+    <div class="card-head">
+      <div class="icon-disc">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M3 12h18"/>
+          <path d="M12 3c2.6 2.4 4 5.6 4 9s-1.4 6.6-4 9c-2.6-2.4-4-5.6-4-9s1.4-6.6 4-9z"/>
+          <circle cx="6.5" cy="8.5" r="1.3" fill="currentColor" stroke="none"/>
+          <circle cx="17.5" cy="15.5" r="1.3" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
+      <div class="card-titlewrap">
+        <div class="card-label">Routes · Market</div>
+        <h3>國際航線市場分析</h3>
+      </div>
+    </div>
+    <div class="card-body">
+      <ul>
+        <li>全國國際航點載客排名與成長趨勢</li>
+        <li>各國際機場航線結構與佔比比較</li>
+        <li>重點對飛國家深度分析</li>
+        <li>互動式航線網絡地圖</li>
+      </ul>
+      <div class="card-enter"><span class="zh">進入儀表板</span><span class="arrow">→</span></div>
+    </div>
+  </a>
+
+  <!-- 3. 航空貨運市場分析 -->
+  <a class="card" style="--theme:#A8502F;--theme-bg:#F7ECE6" href="https://corinne37ccc.github.io/DB_TW_Airport_Cargo/DB_TW_Airport_Cargo-data.html" target="_blank" rel="noopener">
+    <div class="card-head">
+      <div class="icon-disc">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3l8 4.2v9.6L12 21l-8-4.2V7.2z"/>
+          <path d="M4 7.2l8 4.2 8-4.2"/>
+          <path d="M12 11.4V21"/>
+          <path d="M8 5.1l8 4.2"/>
+        </svg>
+      </div>
+      <div class="card-titlewrap">
+        <div class="card-label">Cargo · Market</div>
+        <h3>航空貨運市場分析</h3>
+      </div>
+    </div>
+    <div class="card-body">
+      <ul>
+        <li>全國及桃園機場歷年貨運量趨勢</li>
+        <li>進出口貿易品類與主要國家分析</li>
+        <li>國籍航空公司貨運量比較</li>
+        <li>自由貿易港區統計</li>
+      </ul>
+      <div class="card-enter"><span class="zh">進入儀表板</span><span class="arrow">→</span></div>
+    </div>
+  </a>
+
+  <!-- 4. 國籍航空公司數據概覽 -->
+  <a class="card" style="--theme:#8C5A35;--theme-bg:#F5EDE2" href="https://corinne37ccc.github.io/DB_TW_Airport_Airline-Companies/" target="_blank" rel="noopener">
+    <div class="card-head">
+      <div class="icon-disc">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M14.5 9.2c0-1.1-1.1-1.9-2.5-1.9s-2.5.7-2.5 1.8c0 1.2 1.1 1.6 2.5 1.9 1.5.3 2.7.7 2.7 2 0 1.1-1.2 1.9-2.7 1.9s-2.6-.8-2.7-1.9"/>
+          <path d="M12 6v1.1"/>
+          <path d="M12 16.9V18"/>
+        </svg>
+      </div>
+      <div class="card-titlewrap">
+        <div class="card-label">Airline · Carriers</div>
+        <h3>國籍航空公司數據概覽</h3>
+      </div>
+    </div>
+    <div class="card-body">
+      <ul>
+        <li>航空公司基本資訊與全國機場進駐情況</li>
+        <li>各機場航空公司客貨運業務比較</li>
+        <li>國籍航空公司航線地圖</li>
+        <li>國籍航空公司機隊機型資訊</li>
+      </ul>
+      <div class="card-enter"><span class="zh">進入儀表板</span><span class="arrow">→</span></div>
+    </div>
+  </a>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-rule"></div>
+  <div class="footer-grid">
+    <div class="src">
+      <strong>資料來源：</strong>交通部統計查詢網、民航統計月報，本網站整理。<br>
+      <span class="disc">本儀表板資料僅供參考，以民航局官方發布為準。</span>
+    </div>
+    <div class="footer-meta">
+      <div>更新日期：2026-06-23</div>
+      <div>製作者：Corinne Lin</div>
+    </div>
+  </div>
+  <div class="footer-tag">Taiwan Civil Aviation Dashboard · 2026</div>
+</footer>
+
+</body>
+</html>
