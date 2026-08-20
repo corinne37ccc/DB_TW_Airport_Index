@@ -58,6 +58,12 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .card-enter .arrow{transition:transform .18s ease}
 .card:hover .card-enter .arrow{transform:translateX(4px)}
 
+/* ---------- live card (帶資料鮮度標示的卡片) ---------- */
+.card--live .card-head{justify-content:space-between}
+.card-headline{display:flex;align-items:center;gap:14px;min-width:0}
+.card-badge{flex:none;display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.32);font-size:11px;font-weight:500;letter-spacing:1px;color:#fff;white-space:nowrap}
+.card-badge .dot{width:6px;height:6px;border-radius:50%;background:#8FD8B0;box-shadow:0 0 0 3px rgba(143,216,176,.25)}
+
 /* ---------- footer ---------- */
 .site-footer{max-width:1180px;margin:0 auto;padding:36px 28px 48px}
 .footer-rule{height:1px;background:var(--border);margin-bottom:22px}
@@ -75,6 +81,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
   .footer-meta{text-align:left}
 }
 @media (max-width:600px){
+  .card--live .card-head{flex-wrap:wrap;gap:10px}
+  .card-badge{font-size:10px;padding:4px 9px}
   .header-title h1{font-size:24px}
   .header-title .en{font-size:12px;letter-spacing:2px}
   .mark{width:36px;height:36px}
@@ -104,7 +112,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 
 <section class="hero">
   <div class="eyebrow">Dashboard Directory · 儀表板目錄</div>
-  <p>整合機場營運、國際航線、航空貨運與國籍航空公司四大主題的民航統計儀表板，資料涵蓋歷年趨勢與市場結構分析，點選卡片即可進入各主題儀表板。</p>
+  <p>整合機場營運、國際航線、航空貨運與國籍航空公司四大主題的民航統計儀表板，資料涵蓋歷年趨勢與市場結構分析；並延伸至桃園機場貨機每日班表的營運監控與預測，點選卡片即可進入各主題儀表板。</p>
 </section>
 
 <main class="grid">
@@ -213,17 +221,52 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
     </div>
   </a>
 
+  <!-- 5. 桃園機場貨機每日班表 (營運監控層) -->
+  <!-- 網址備註：待該 repo 的上線版本另存為 index.html 後，可將 href 簡化為
+       https://corinne37ccc.github.io/DB_TW_TPE_Daily-flight_cargo/
+       改版時即不需再回頭修改本頁連結。 -->
+  <a class="card card--live" style="--theme:#7A3B24;--theme-bg:#F5E9E3" href="https://corinne37ccc.github.io/DB_TW_TPE_Daily-flight_cargo/TPE_daily_flight_cargo_vB.html" target="_blank" rel="noopener">
+    <div class="card-head">
+      <div class="card-headline">
+        <div class="icon-disc">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="16" rx="2.2"/>
+            <path d="M3 10h18"/>
+            <path d="M8 3v4"/>
+            <path d="M16 3v4"/>
+            <path d="M7.5 14h3.5"/>
+            <path d="M7.5 17.5h9"/>
+          </svg>
+        </div>
+        <div class="card-titlewrap">
+          <div class="card-label">Cargo Ops · Daily</div>
+          <h3>桃園機場貨機每日班表</h3>
+        </div>
+      </div>
+      <span class="card-badge"><span class="dot"></span>每日更新</span>
+    </div>
+    <div class="card-body">
+      <ul>
+        <li>未來班表預測與歷史每日班表分析</li>
+        <li>航空公司貨機機隊分析</li>
+        <li>貨機航班延誤分析</li>
+        <li>衍生地面車流量預測</li>
+      </ul>
+      <div class="card-enter"><span class="zh">進入儀表板</span><span class="arrow">→</span></div>
+    </div>
+  </a>
+
 </main>
 
 <footer class="site-footer">
   <div class="footer-rule"></div>
   <div class="footer-grid">
     <div class="src">
-      <strong>資料來源：</strong>交通部統計查詢網、民航統計月報，本網站整理。<br>
+      <strong>資料來源：</strong>交通部統計查詢網、民航統計月報、交通部 TDX 運輸資料流通服務，本網站整理。<br>
       <span class="disc">本儀表板資料僅供參考，以民航局官方發布為準。</span>
     </div>
     <div class="footer-meta">
-      <div>更新日期：2026-06-23</div>
+      <div>更新日期：2026-08-20</div>
       <div>製作者：Corinne Lin</div>
     </div>
   </div>
